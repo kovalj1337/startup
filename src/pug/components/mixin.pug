@@ -1,0 +1,53 @@
+-
+    let service = {
+        typografy:{
+            icon: "img/typografy.svg",
+            name: "Clean Typography",
+            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum."
+        },
+        rocksolid:{
+            icon: 'img/rocksolid.svg',
+            name: "Rock Solid Code",
+            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum."
+        },
+        support:{
+            icon:'img/expert.svg',
+            name: "Expert Support",
+            text:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum."
+        }
+    }
+mixin service(serviceinfo)
+    .info-service.flex
+        .icon
+            img(src=serviceinfo.icon)
+        p.name #{serviceinfo.name}
+        p.info-service-text #{serviceinfo.text}
+-
+    let command = {
+        khalil:{
+            photo: "img/khalil.png",
+            name: "Md. Khalil Uddin",
+            chin: "Head of Ideas"
+        },
+        miah:{
+            photo: "img/rubel.png",
+            name: "Rubel Miah",
+            chin: "Lead WordPress Developer"
+        },
+        mia:{
+            photo: "img/mia.png",
+            name: "Shamim Mia",
+            chin: "Sr. Web Developer"
+        },
+        doe:{
+            photo: "img/doe.png",
+            name: "John Doe",
+            chin: "Front-end Developer"
+        }
+    }
+mixin workers(workersinfo)
+    .worker
+        .photo
+            img(src=workersinfo.photo, alt="")
+        p.name #{workersinfo.name}
+        p.chin #{workersinfo.chin}
