@@ -8,6 +8,7 @@ html(lang="en")
     body
         include components/mixin
         .bgc-blur-for-mobile
+        .bgc-blur
         header
             .wrapper
                 .menu.flex
@@ -27,9 +28,28 @@ html(lang="en")
                         a(href="#") Contact  
                 .welcome.flex 
                     .welcome-text.flex
-                        h1 Welcome to STARTUP
+                        h1(id="welcome") Welcome to STARTUP
                         p Your Favourite Creative Agency Template
-                    a(href="#").btn Get Started
+                    a(href="#" id="get-started-login").btn Get Started
+                    .login-menu
+                        form(action="").flex
+                            .cancel-login
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill=""><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg> 
+                            .login.flex
+                                h2 Введіть свій логін та номер
+                                .login-input
+                                    p Логін
+                                    input.login-inputs(type="text" name="login" id="login")
+                                .number
+                                    p Телефон
+                                    input.login-inputs(type="text" name="number" id="number")
+                            .captcha.flex
+                                p.square.first-square(value="1") 1
+                                p.square.second-square(value="2") 2
+                                p.square.thirth-square(value="3") 3
+                            .dropzone.flex(id="dropzone")
+                            p(id="captcha")
+                            button(id="captcha-submit" type="button").btn.bgc-red відправити 
         main
             .services.flex.wrapper
                 .services-text.flex
@@ -59,7 +79,7 @@ html(lang="en")
                 h2 Latest Works
                 hr.hr-mini
                 .lates-works-buttons.flex 
-                    form(action="").flex
+                    form(action="" id="typeworks").flex
                         p.first
                             input(type="radio" name="typeworks" id="first" value="all")
                             label(for="first") All
@@ -76,15 +96,15 @@ html(lang="en")
                             input(type="radio" name="typeworks" id="fiveth" value="Strategy")
                             label(for="fiveth") Strategy
                 .works.flex.wrapper
-                    img(src="img/hair.png", alt="")
-                    img(src="img/golub.png", alt="")
-                    img(src="img/things.png", alt="")
-                    img(src="img/camera.png", alt="")
-                    img(src="img/bike.png", alt="")
-                    img(src="img/notebook.png", alt="")
-                    img(src="img/glases.png", alt="")
-                    img(src="img/thingssecond.png", alt="")
-                    img(src="img/events.png", alt="")
+                    img(src="img/hair.png" alt="" id="hair" data-category="Branding,Design")
+                    img(src="img/golub.png" alt="" id="golub" data-category="Design")
+                    img(src="img/things.png" alt="" id="things" data-category="Development,Strategy")
+                    img(src="img/camera.png" alt="" id="camera" data-category="Branding")
+                    img(src="img/bike.png" alt="" id="bike" data-category="Strategy")
+                    img(src="img/notebook.png" alt="" id="notebook" data-category="Design,Branding")
+                    img(src="img/glases.png" alt="" id="glases" data-category="Development")
+                    img(src="img/thingssecond.png" alt="" id="thingssecond" data-category="Strategy,Design")
+                    img(src="img/events.png" alt="" id="events" data-category="Branding")
             .offer.flex
                 .offer-text 
                     h2 Do you like OUR WORK so far?
@@ -108,8 +128,8 @@ html(lang="en")
                                     p.title-name.red Startup ideas needs to be funded
                                     p.description-name By #[span Khalil] Uddin in #[span Development] 
                             .text
-                                p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam 
-                                a(href="#").read-more Read more 
+                                p(id="more-first") Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam 
+                                btn(id="read-more-first").read-more Read more 
                     hr
                     .recent-blocks
                     .startup-must.flex
@@ -124,8 +144,8 @@ html(lang="en")
                                     p.title-name User Interface Designing Elements 
                                     p.description-name By Khalil Uddin in Development
                             .text
-                                p Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam 
-                                a(href="#" disabled).read-more.disabled Read more
+                                p(id="more-second") Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod teduntlabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et erebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit am Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidulabore et dolore aliquyam erat, sed diam 
+                                btn(href="#" disabled id="read-more-second").read-more.disabled Read more
             .comments.wrapper
                 .icons.flex 
                     img(src="img/deforham.png", alt="")
