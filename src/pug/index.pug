@@ -11,7 +11,7 @@ html(lang="en")
         .bgc-blur
         header.bgc-paralax
             .wrapper
-                .menu(id="home").flex.wrapper
+                .menu(id="tohome").flex.wrapper
                     .logo
                         picture
                             img(src="img/Startup.png", alt="" id="startup-logo")
@@ -26,7 +26,7 @@ html(lang="en")
                         a(href="#blog") Blog
                         a(href="#clients") Clients
                         a(href="#contact") Contact  
-                .welcome.flex 
+                .welcome(id="home").flex 
                     .welcome-text.flex
                         h1(id="welcome") Welcome to STARTUP
                         p Your Favourite Creative Agency Template
@@ -160,11 +160,11 @@ html(lang="en")
                     .first-number(id="first-quote").numbers 
                     .second-number(id="second-quote").numbers
                     .thirst-number(id="thirst-quote").numbers
-            .form-title(id="contact").flex.wrapper
+            .form-title(id="contact").flex.wrapper.hiden-element
                 h2 Get in touch
                 hr.hr-mini
                 p Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet
-            .form.wrapper.flex
+            .form.wrapper.flex.hiden-element
                 .addres-number-email.flex
                     .adress.form-info
                         .svg                                                 
