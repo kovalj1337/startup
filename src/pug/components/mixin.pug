@@ -3,50 +3,61 @@
         typografy:{
             icon: "img/typografy.svg",
             name: "Clean Typography",
-            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum."
+            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
+            onclick: false
         },
         rocksolid:{
             icon: 'img/rocksolid.svg',
             name: "Rock Solid Code",
-            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum."
+            text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
+            onclick: true
         },
         support:{
             icon:'img/expert.svg',
             name: "Expert Support",
-            text:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum."
+            text:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.",
+            onclick: false
         }
     }
 mixin service(serviceinfo)
     .info-service.flex
-        .icon
-            img(src=serviceinfo.icon)
-        p.name #{serviceinfo.name}
-        p.info-service-text #{serviceinfo.text}
+            .icon
+            if serviceinfo.onclick
+                img(src=serviceinfo.icon id="hacksite")
+            else
+                img(src=serviceinfo.icon)
+            p.name #{serviceinfo.name}
+            p.info-service-text #{serviceinfo.text}
+        
 -
     let command = {
         khalil:{
             photo: "img/khalil.png",
             name: "Md. Khalil Uddin",
-            chin: "Head of Ideas"
+            chin: "Head of Ideas",
+            id: "first-developer"
         },
         miah:{
             photo: "img/rubel.png",
             name: "Rubel Miah",
-            chin: "Lead WordPress Developer"
+            chin: "Lead WordPress Developer",
+            id: "second-developer"
         },
         mia:{
             photo: "img/mia.png",
             name: "Shamim Mia",
-            chin: "Sr. Web Developer"
+            chin: "Sr. Web Developer",
+            id: "thirth-developer"
         },
         doe:{
             photo: "img/doe.png",
             name: "John Doe",
-            chin: "Front-end Developer"
+            chin: "Front-end Developer",
+            id: "fourth-developer"
         }
     }
 mixin workers(workersinfo)
-    .worker
+    .worker(id=workersinfo.id)
         .photo
             img(src=workersinfo.photo, alt="")
         p.name #{workersinfo.name}
