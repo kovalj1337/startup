@@ -19,13 +19,13 @@ html(lang="en")
                     .menu-panel.flex
                         .cancel
                             <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill=""><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg> 
-                        a(href="#home") Home
-                        a(href="#services") Services
-                        a(href="#about") About
-                        a(href="#works") Works
-                        a(href="#blog") Blog
-                        a(href="#clients") Clients
-                        a(href="#contact") Contact  
+                        a(href="#home").nav-panel Home
+                        a(href="#services").nav-panel Services
+                        a(href="#about").nav-panel About
+                        a(href="#works").nav-panel Works
+                        a(href="#blog").nav-panel Blog
+                        a(href="#clients").nav-panel Clients
+                        a(href="#contact").nav-panel Contact
                 .welcome(id="home").flex 
                     .welcome-text.flex
                         h1(id="welcome") Welcome to STARTUP
@@ -40,14 +40,18 @@ html(lang="en")
                                 .login-input
                                     p Логін
                                     input.login-inputs(type="text" name="login" id="login")
-                                .number
+                                    p.alertLogin
+                                .number-log
                                     p Телефон
                                     input.login-inputs(type="text" name="number" id="number")
+                                    p.alertNum
                             .captcha.flex
                                 p.square.first-square(value="1") 1
                                 p.square.second-square(value="2") 2
                                 p.square.thirth-square(value="3") 3
                             .dropzone.flex(id="dropzone")
+                            p.alertCapctha
+                            .p(id="captchatext") 
                             p(id="captcha")
                             button(id="captcha-submit" type="button").btn.bgc-red відправити 
         main
@@ -96,17 +100,17 @@ html(lang="en")
                             input(type="radio" name="typeworks" id="fiveth" value="Strategy")
                             label(for="fiveth") Strategy
                 .works.flex.wrapper
-                    img(src="img/hair.png" alt="" id="hair" data-category="Branding,Design")
-                    img(src="img/golub.png" alt="" id="golub" data-category="Design")
-                    img(src="img/things.png" alt="" id="things" data-category="Development,Strategy")
-                    img(src="img/camera.png" alt="" id="camera" data-category="Branding")
-                    img(src="img/bike.png" alt="" id="bike" data-category="Strategy")
-                    img(src="img/notebook.png" alt="" id="notebook" data-category="Design,Branding")
-                    img(src="img/glases.png" alt="" id="glases" data-category="Development")
-                    img(src="img/thingssecond.png" alt="" id="thingssecond" data-category="Strategy,Design")
-                    img(src="img/events.png" alt="" id="events" data-category="Branding")
+                    img.workimg(src="img/hair.png" alt="" id="hair" data-category="Branding,Design")
+                    img.workimg(src="img/golub.png" alt="" id="golub" data-category="Design")
+                    img.workimg(src="img/things.png" alt="" id="things" data-category="Development,Strategy")
+                    img.workimg(src="img/camera.png" alt="" id="camera" data-category="Branding")
+                    img.workimg(src="img/bike.png" alt="" id="bike" data-category="Strategy")
+                    img.workimg(src="img/notebook.png" alt="" id="notebook" data-category="Design,Branding")
+                    img.workimg(src="img/glases.png" alt="" id="glases" data-category="Development")
+                    img.workimg(src="img/thingssecond.png" alt="" id="thingssecond" data-category="Strategy,Design")
+                    img.workimg(src="img/events.png" alt="" id="events" data-category="Branding")
             .offer.bgc-paralax-second.flex.hiden-element
-                .offer-text 
+                .offer-text.wrapper
                     h2 Do you like OUR WORK so far?
                     h2 Let's talk about YOUR PROJECT!
                 .offer-btn
@@ -197,23 +201,23 @@ html(lang="en")
                         .submit.flex.gap
                             button.btn-form(type="submit") Send message
                             p #[span.red *] We’ll contact you as as possible. We don’t reply on Monday.
-                .get-in-touch-popup.flex
-                    .gitp-name
-                        p Імя
-                        p(id="touch-name")
-                    .gitp-subject
-                        p Фамілія 
-                        p(id="touch-subject")
-                    .gitp-email
-                        p Почта
-                        p(id="touch-email")
-                    .gitp-company
-                        p Назва компанії
-                        p(id="touch-company-name")
-                    p(id="touch-text-area")
-                    .buttons-getin-touch.flex 
-                        button(id="submit-btn").btn.btn-bgc Відправити
-                        button(id="redact-btn").btn.btn-bgc Редагувати
+            .get-in-touch-popup.flex.zindex
+                .gitp-name
+                    p Імя
+                    p(id="touch-name")
+                .gitp-subject
+                    p Фамілія 
+                    p(id="touch-subject")
+                .gitp-email
+                    p Почта
+                    p(id="touch-email")
+                .gitp-company
+                    p Назва компанії
+                    p(id="touch-company-name")
+                p(id="touch-text-area")
+                .buttons-getin-touch.flex 
+                    button(id="submit-btn").btn.btn-bgc Відправити
+                    button(id="redact-btn").btn.btn-bgc Редагувати
         footer.footer.flex
             .icons-footer.flex
                 a(href="") <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="36px" height="36px"><path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 30.693359 14.058594 C 27.093054 14.058594 24.152344 16.998175 24.152344 20.597656 C 24.152344 20.622956 24.159856 20.646615 24.160156 20.671875 C 20.346071 20.164308 16.972078 18.281343 14.654297 15.439453 A 1.0001 1.0001 0 0 0 13.015625 15.568359 C 12.452734 16.536013 12.130859 17.663768 12.130859 18.857422 C 12.130859 19.919597 12.426761 20.906321 12.878906 21.796875 A 1.0001 1.0001 0 0 0 12.085938 22.773438 L 12.085938 22.84375 C 12.085938 24.777783 12.990963 26.452789 14.332031 27.652344 A 1.0001 1.0001 0 0 0 14.072266 28.677734 C 14.630704 30.41466 15.93241 31.774479 17.5625 32.541016 C 16.258408 33.150994 14.861087 33.587891 13.320312 33.587891 C 12.909515 33.587891 12.510187 33.564538 12.119141 33.517578 A 1.0001 1.0001 0 0 0 11.460938 35.353516 C 14.065405 37.024617 17.166795 38 20.490234 38 C 25.860882 38 30.105907 35.743874 32.943359 32.525391 C 35.780812 29.306907 37.253906 25.153083 37.253906 21.240234 C 37.253906 21.122724 37.248494 21.01029 37.246094 20.894531 C 38.219933 20.11274 39.135827 19.250444 39.830078 18.210938 A 1.0001 1.0001 0 0 0 38.705078 16.699219 C 38.866705 16.38464 39.095491 16.111528 39.205078 15.769531 A 1.0001 1.0001 0 0 0 37.744141 14.603516 C 36.869551 15.121731 35.886845 15.463383 34.869141 15.701172 C 33.725772 14.727018 32.30529 14.058594 30.693359 14.058594 z M 30.693359 16.058594 C 32.005547 16.058594 33.178321 16.606981 34.005859 17.490234 A 1.0001 1.0001 0 0 0 34.927734 17.789062 C 35.079649 17.759183 35.201682 17.662443 35.351562 17.626953 C 35.332963 17.638463 35.321514 17.658672 35.302734 17.669922 A 1.0001 1.0001 0 0 0 35.832031 19.527344 C 35.763341 19.579724 35.722335 19.662323 35.652344 19.712891 A 1.0001 1.0001 0 0 0 35.238281 20.566406 C 35.247781 20.79066 35.253906 21.015832 35.253906 21.240234 C 35.253906 24.645385 33.939657 28.371609 31.443359 31.203125 C 28.947059 34.03464 25.308587 36 20.490234 36 C 18.837046 36 17.2817 35.669687 15.800781 35.167969 C 17.643043 34.77762 19.387244 34.125203 20.816406 33.003906 A 1.0001 1.0001 0 0 0 20.21875 31.21875 C 18.803099 31.19304 17.712807 30.392345 16.898438 29.359375 C 17.197615 29.320665 17.507049 29.319275 17.792969 29.240234 A 1.0001 1.0001 0 0 0 17.724609 27.294922 C 16.073199 26.96164 14.784996 25.723029 14.3125 24.121094 C 14.7378 24.223448 15.110445 24.452375 15.5625 24.466797 A 1.0001 1.0001 0 0 0 16.150391 22.636719 C 14.930654 21.821102 14.130859 20.439709 14.130859 18.857422 C 14.130859 18.530423 14.306329 18.270522 14.371094 17.964844 C 17.211591 20.776703 20.99183 22.6429 25.248047 22.857422 A 1.0001 1.0001 0 0 0 26.271484 21.628906 C 26.193654 21.29976 26.152344 20.956387 26.152344 20.597656 C 26.152344 18.079138 28.173664 16.058594 30.693359 16.058594 z"/></svg>

@@ -2,20 +2,21 @@ function getRandomPermutation() {
     return [1, 2, 3].sort(() => Math.random() - 0.5).join("")
 }
 const permutation = getRandomPermutation();
+document.querySelector("#captchatext").textContent = `введіть число ${permutation}`
 console.log(permutation); // Выведет случайную перестановку: например, "132"
 
 const block = document.querySelector('.bgc-paralax');
-blockSecond = document.querySelector(".bgc-paralax-second")
+const blockSecond = document.querySelector(".bgc-paralax-second");
+
 document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
+    const x = (e.clientX / window.innerWidth) * 20 - 10; // от -10% до 10%
+    const y = (e.clientY / window.innerHeight) * 20 - 10; // от -10% до 10%
 
-    const moveX = 100 - x
-    const moveY = 100 - y
-
-    block.style.backgroundPosition = `${moveX}% ${moveY}%`
-    blockSecond.style.backgroundPosition = `${moveX}% ${moveY}%`
+    block.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
+    blockSecond.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
 });
+
+
 
 const fixedMenu = document.querySelector(".menu")
 const startupLogo = document.querySelector("#startup-logo")
@@ -24,7 +25,6 @@ window.addEventListener('scroll', () => {
         if(screen.width >= 768){
             fixedMenu.classList.add('scrolled')
         }else{
-
         }
         startupLogo.src = "img/StartupRed.png"
     } else {
@@ -38,7 +38,8 @@ const burger = document.querySelector(".burger"),
     menu = document.querySelector(".menu-panel"),
     cancel = document.querySelector(".cancel"),
     login = document.querySelector("#get-started-login"),
-    bgc = document.querySelector(".bgc-blur")
+    bgc = document.querySelector(".bgc-blur"),
+    navPanel = document.querySelectorAll(".nav-panel")
 
 burger.addEventListener("click", function () {
     bgcMobile.style.right = "0"
@@ -48,6 +49,12 @@ cancel.addEventListener("click", function () {
     bgcMobile.style.right = "-100%"
     menu.style.left = "-100%"
 })
+document.querySelectorAll(".nav-panel").forEach(el => {
+    el.addEventListener("click", function() {
+        bgcMobile.style.right = "-100%"
+        menu.style.left = "-100%"
+    })
+})
 let clickCount = 0
 let clickTimer
 
@@ -56,7 +63,7 @@ document.querySelector("#hacksite").addEventListener('click', function (e) {
 
     if (clickCount === 3) {
         console.log('triple click')
-        document.querySelectorAll(".name").forEach(el => {
+        document.querySelectorAll(".nameCanHacked").forEach(el => {
             el.textContent = "YOU HACK SITE!!!!!"
         })
         clickCount = 0
@@ -133,7 +140,13 @@ let offsetX = 0,
             order.push(value);
         });
         let itog = order.join('')
-        console.log(itog)
+        return itog
+    }
+    function resetSquares() {
+        document.querySelectorAll(".square").forEach(element => {
+            element.style.left = "0px";
+            element.style.top = "0px";
+        });
     }
 const loginMenu = document.querySelector(".login-menu"),
     cancelLogin = document.querySelector(".cancel-login")
@@ -161,26 +174,26 @@ captchaSubmit.addEventListener("click", () => {
     const logined = loginEnter.value
     if (regNum.test(phoneNumber)) {
         if (logined !== "") {
-            welcometext.textContent = `Welcome ${logined}`
-            bgc.style.right = "-100%"
-            loginMenu.style.left = "-100%"
-            localStorage.setItem("username", `${logined}`)
-            console.log(user)
+            if(checkOrder() === permutation){
+                welcometext.textContent = `Welcome ${logined}`
+                bgc.style.right = "-100%"
+                loginMenu.style.left = "-100%"
+                localStorage.setItem("username", `${logined}`)
+                console.log(user)
+            }else{
+                resetSquares()
+            }
         } else {
-            alert("Логін не може бути пустим!")
+            document.querySelector(".alertLogin").textContent = "Логін не може бути пустим!"
         }
     } else {
         if (phoneNumber == "") {
-            alert("Введіть номер!")
+            document.querySelector(".alertNum").textContent = "Номер не може бути пустим!"
         } else {
-            alert("Невалідний номер!")
+            document.querySelector(".alertNum").textContent = "Невалдіний номер!"
         }
     }
-    if(checkOrder() === Number(permutation)){
-        alert("віів")
-    }else{
-        alert("Капча невірна!")
-    }
+    
 })
 let user = localStorage.getItem("username")
 console.log(user)
@@ -356,7 +369,7 @@ const quoteButtons = [
 ];
 const quote = document.querySelector(".comment-text");
 const quoteName = document.querySelector(".comment-name"),
-    comment = document.querySelector(".comment")
+    comment = document.querySelector(".comment");
 
 const quotesData = [{
         text: "Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum",
@@ -377,21 +390,34 @@ let intervalId;
 
 function updateQuote(index) {
     quoteButtons.forEach((btn, i) => {
-        btn.style.backgroundColor = i === index ? "#c0301c" : "#ddd"
-    })
+        btn.style.backgroundColor = i === index ? "#c0301c" : "#ddd";
+    });
 
-    quote.textContent = quotesData[index].text
-    quoteName.textContent = quotesData[index].name
+    // Плавно скрываем текущие элементы
+    quote.classList.remove('showQuote');
+    quoteName.classList.remove('showQuote');
+
+    // Обновляем текст и показываем новые данные
+    setTimeout(() => {
+        quote.textContent = quotesData[index].text;
+        quoteName.textContent = quotesData[index].name;
+
+        // Плавно показываем новые элементы
+        quote.classList.add('showQuote');
+        quoteName.classList.add('showQuote');
+    }, 500); // Задержка перед обновлением текста
+
     currentIndex = index;
 }
 
 function startInterval() {
     intervalId = setInterval(() => {
-        let nextIndex = (currentIndex + 1) % quotesData.length
-        updateQuote(nextIndex)
-    }, 3000)
+        let nextIndex = (currentIndex + 1) % quotesData.length;
+        updateQuote(nextIndex);
+    }, 4000); // Интервал в 6 секунд
 }
 
+// Инициализация первого слайда и запуск интервала
 function stopInterval() {
     clearInterval(intervalId);
 }
@@ -404,7 +430,7 @@ quoteButtons.forEach((btn, i) => {
     comment.addEventListener("mouseenter", stopInterval)
     comment.addEventListener("mouseleave", startInterval)
 })
-updateQuote(0);
+updateQuote(currentIndex);
 startInterval();
 const khalil = document.querySelector("#first-developer"),
     miah = document.querySelector("#second-developer"),
@@ -417,21 +443,6 @@ let firstDeveloper = khalil,
     thirthDeveloper = shramim,
     fourthDeveloper = john
 
-if (screen.width <= 1600) {
-    fourthDeveloper.style.display = "none"
-} else {
-    fourthDeveloper.style.display = "block"
-}
-if (screen.width <= 1200) {
-    thirthDeveloper.style.display = "none"
-} else {
-    thirthDeveloper.style.display = "block"
-}
-if (screen.width <= 768) {
-    secondDeveloper.style.display = "none"
-} else {
-    secondDeveloper.style.display = "block"
-}
 window.addEventListener("resize", () => {
 })
 leftBtn.addEventListener("click", () => {
@@ -445,7 +456,10 @@ const elements = document.querySelectorAll('.hiden-element');
 function showElementsOnScroll() {
   elements.forEach(el => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
+    const elHeight = rect.height;
+    const scrollPercentage = (window.innerHeight - rect.top) / (elHeight + window.innerHeight);
+
+    if (scrollPercentage > 0.2) {
       el.classList.add('show');
     }
   });
@@ -453,14 +467,51 @@ function showElementsOnScroll() {
 
 window.addEventListener('scroll', showElementsOnScroll);
 window.addEventListener('load', showElementsOnScroll);
-
 let offsetslider = 0;
-const slider = document.querySelector(".workers")
+const sliders = document.querySelectorAll(".worker");
 
-leftBtn.addEventListener("click", function(){
-    offsetslider += 260
-    slider.style.left = offsetslider +"px"
-})
+function sliderAdaptive(screenSlider, offset){
+    if(screen.width <= screenSlider){
+        if(offsetslider > offset){
+            offsetslider = 0
+        }
+    }
+}
+function sliderAdaptiveNeg(screenSlider, offset){
+    if(screen.width <= screenSlider){
+        if(offsetslider < offset){
+            offsetslider = 0
+        }
+    }
+}
+rightBtn.addEventListener("click", function() {
+    offsetslider += 313
+    if(screen.width <= 767){
+        if(offsetslider > 939){
+            offsetslider = 0
+        }
+    }else if(screen.width <= 1200){
+        if(offsetslider > 626){
+            offsetslider = 0
+        }
+    }else if(screen.width <= 1600){
+        if(offsetslider > 313){
+            offsetslider = 0
+        }
+    }
+    sliders.forEach(slider => {
+        slider.style.left = -offsetslider + "px";
+    });
+});
+leftBtn.addEventListener("click", function() {
+    offsetslider -= 310;
+    if(offsetslider < 0){
+        offsetslider = 0
+    }
+    sliders.forEach(slider => {
+        slider.style.left = -offsetslider + "px";
+    });
+});
 const squares = document.querySelectorAll('.square');
 
 // Извлекаем значение атрибута "value" у каждого элемент
